@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>tabd.plugin</title>
+  <style>
+    body { background: #121212; color: #eee; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    header, footer { text-align: center; padding: 2rem; background: #1e1e1e; }
+    main { padding: 2rem; display: flex; flex-direction: column; align-items: center; }
+    .features { display: flex; flex-wrap: wrap; gap: 1.5rem; max-width: 1000px; justify-content: center; }
+    .feature-box { background: #1c1c1c; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; width: 280px; transition: 0.2s ease; }
+    .feature-box:hover { border-color: #00c4ff; transform: translateY(-2px); }
+    h1, h2 { font-size: 1.5rem; }
+    a { color: #00c4ff; text-decoration: none; margin-top: 2rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧩 tabd.plugin</h1>
+    <p>The modular address bar used by RockyHome</p>
+  </header>
+
+  <main>
+    <section class="features">
+      <div class="feature-box">
+        <h2>📦 Built-In with RockyBrowser</h2>
+        <p>tabd.plugin ships automatically with every RockyBrowser install. No setup needed.</p>
+      </div>
+
+      <div class="feature-box">
+        <h2>🧃 Bookmark Engine</h2>
+        <pCreate, update, and inject bookmark logic directly into RockyHome UI panels.</p>
+      </div>
+
+      <div class="feature-box">
+        <h2>🪄 Script & Style Injector</h2>
+        <pLoad dynamic JS and CSS from local or remote sources with a single tabd command.</p>
+      </div>
+
+      <div class="feature-box">
+        <h2>🌐 Address Bar Replacement</h2>
+        <pTraditional navigation is replaced by a sleek, command-driven interface powered by tabd.plugin.</p>
+      </div>
+
+      <div class="feature-box">
+        <h2>💾 Persistent Logic</h2>
+        <pSurvives state wipes via shell preload scripts. tabd loads before the browser UI.</p>
+      </div>
+    </section>
+
+    <a href="index.html">← Back to RockySticks</a>
+  </main>
+
+  <footer>
+    <p>© 2025 RockySticks. tabd.plugin powers the shell.</p>
+  </footer>
+</body>
+</html>

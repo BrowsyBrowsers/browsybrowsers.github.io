@@ -2,99 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RockySticks - Maintenance Mode</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>404 – Not Found</title>
   <style>
-    :root {
-      --bg: #121212;
-      --fg: #e0e0e0;
-      --muted: #aaa;
-      --accent: #bb86fc;
-      --border: #333;
-      --radius: 6px;
-      --font: 'Inter', sans-serif;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--fg);
+      background: #121212;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      text-align: center;
-    }
-    header {
-      padding: 1rem 2rem;
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-    }
-    header img { height: 40px; }
-    nav a {
-      color: var(--fg);
-      text-decoration: none;
-      margin-left: 1rem;
-      font-weight: 500;
-      transition: color .2s;
-    }
-    nav a:hover { color: var(--accent); }
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding: 2rem;
+      height: 100vh;
+      margin: 0;
     }
-    .status-box {
-      background: #1e1e1e;
-      border: 1px solid var(--border);
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
-      max-width: 600px;
-    }
-    h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
     p {
-      font-weight: 300;
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-    footer {
+      font-size: 1rem;
+      max-width: 400px;
       text-align: center;
-      padding: 1rem;
-      font-size: 0.875rem;
-      color: var(--muted);
-      background: #1a1a1a;
+      margin-bottom: 2rem;
+    }
+    a {
+      background: #00c4ff;
+      color: #000;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+    a:hover {
+      background: #00e4ff;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <img src="https://rockysticks.github.io/logo.png" alt="RockySticks Logo">
-    <nav>
-    </nav>
-  </header>
-
-  <main>
-    <div class="status-box">
-      <h2>🚧 Temporarily Unavailable</h2>
-      <p>RockySticks is currently offline while we prepare major improvements to your browsing experience. This affects both the homepage and browser launch.</p>
-      <p>Please check back soon or connect with the team on Discord and Reddit for updates.</p>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 RockySticks Project • Refining simplicity.
-  </footer>
-
+  <h1>404</h1>
+  <p>The page you're looking for doesn’t exist in this shell. Maybe it was unfrosted, renamed, or never built.</p>
+  <a href="index.html">← Return to RockySticks Home</a>
 </body>
 </html>

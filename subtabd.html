@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>tabd.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --fg: #f1f1f1;
+      --muted: #b0b0b0;
+      --accent: #86b4ff;
+      --hero-top: #8ae7ff;
+      --hero-bottom: #a18eff;
+      --radius: 16px;
+      --panel: rgba(255, 255, 255, 0.08);
+      --blur: blur(20px);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--hero-top), var(--hero-bottom));
+      color: #0b0f1a;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.4rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+    }
+
+    .section {
+      padding: 4rem 2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--panel);
+      backdrop-filter: var(--blur);
+      border-radius: var(--radius);
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: var(--fg);
+      opacity: 0.9;
+    }
+
+    .cta {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .cta a {
+      padding: 1rem 2.5rem;
+      background: var(--accent);
+      color: #0b0f1a;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: var(--radius);
+      font-size: 1.1rem;
+      transition: background 0.2s;
+    }
+
+    .cta a:hover {
+      background: #5ea4ff;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>tabd.</h1>
+  <p>the browser that doesn't need loud features to feel right.</p>
+</header>
+
+<section class="section">
+  <div class="feature-grid" id="features">
+    <div class="card">
+      <h3>smooth UI</h3>
+      <p>frosted panels. round corners. quiet gradients. enough said.</p>
+    </div>
+    <div class="card">
+      <h3>vertical tabs</h3>
+      <p>you can enable them. or not. it’s your space.</p>
+    </div>
+    <div class="card">
+      <h3>tabd:// pages</h3>
+      <p>like <code>tabd://about</code> and <code>tabd://settings</code>. they live inside. you can make more.</p>
+    </div>
+    <div class="card">
+      <h3>iframe support</h3>
+      <p>yep, tabd. uses iframes. some sites don’t like it. that’s okay—we’re not begging them.</p>
+    </div>
+    <div class="card">
+      <h3>style presets</h3>
+      <p>chrome. edge. arc. firefox. or just stick with tabd.—the one with personality.</p>
+    </div>
+    <div class="card">
+      <h3>minimal (but not boring)</h3>
+      <p>just because it started as rocky doesn’t mean it has to be grayscale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <a href="#">download tabd.</a>
+</section>
+
+<footer>
+  built by a person who likes playful UX and round corners.<br>
+  powered by RockySticks. lived in frost.
+</footer>
+
+<script>
+  // Scroll effect for cards
+  window.addEventListener('scroll', () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        card.classList.add('visible');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>tabd.</title>
+  <style>
+    html, body {
+      margin: 0;
+      background: #0d0d0d;
+      font-family: 'Inter', sans-serif;
+      color: #f0f0f0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #tabBar {
+      display: flex;
+      padding: 0.5rem;
+      background: #181818;
+      border-bottom: 1px solid #222;
+      overflow-x: auto;
+    }
+
+    .tab {
+      background: #282828;
+      color: #aaa;
+      padding: 0.4rem 1rem;
+      margin-right: 0.4rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #86b4ff;
+      color: #000;
+    }
+
+    .tab .close {
+      margin-left: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .new-tab {
+      padding: 0.4rem;
+      color: #86b4ff;
+      cursor: pointer;
+    }
+
+    #content {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 42px);
+      background: #000;
+      overflow: auto;
+    }
+
+    .homepage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #181818;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      cursor: pointer;
+      color: #f0f0f0;
+    }
+
+    .download-button {
+      text-align: center;
+      margin: 2rem auto;
+    }
+
+    .download-button a {
+      display: inline-block;
+      padding: 1.2rem 2.8rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #ff6ec4, #7873f5, #44dee5);
+      background-size: 200% 200%;
+      animation: rainbowGlow 6s ease infinite;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      transition: transform 0.2s;
+    }
+
+    .download-button a:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes rainbowGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="tabBar"><div class="new-tab" onclick="newTab()">＋</div></div>
+<div id="content"></div>
+
+<script>
+let tabs = [], activeTab = null;
+
+const homeLinks = [
+  { title: 'ConSurf', url: 'https://consurf.github.io/index.html' },
+  { title: 'RockySticks', url: 'https://rockysticks.github.io/index.html' },
+  { title: 'tabd://about', url: 'tabd://about' },
+  { title: 'tabd://hello', url: 'tabd://hello' }
+];
+
+const tabdPages = {
+  "tabd://about": `
+    <div style="padding:2rem;text-align:center;color:#bbb;">
+      <h2 style="color:#86b4ff;">about tabd.</h2>
+      <p>tabd. came from rocky. decided it didn’t need much. tabs only. that’s enough.</p>
+      <p>it’s quiet. intentional. sometimes fun. always frosted.</p>
+      <div class="download-button">
+        <a href="#">download tabd.</a>
+      </div>
+    </div>
+  `,
+  "tabd://hello": `
+    <div style="padding:2rem;text-align:center;color:#bbb;">
+      <h2 style="color:#86b4ff;">hello tabd.</h2>
+      <p>this is a sample page inside tabd. not hosted. just alive.</p>
+      <p>click something. or click nothing.</p>
+      <div class="download-button">
+        <a href="#">download tabd.</a>
+      </div>
+    </div>
+  `
+};
+
+function newTab(url = null) {
+  const id = Date.now();
+  const container = document.createElement('div');
+  container.style = "width:100%;height:100%;position:absolute;top:0;left:0";
+  const tab = { id, title: 'New Tab', container, history: [], historyPos: -1 };
+  tabs.push(tab); switchTab(id, true);
+  url ? loadIntoTab(tab, url) : renderHomepage(tab);
+}
+
+function switchTab(id, isNew = false) {
+  const content = document.getElementById('content');
+  content.innerHTML = '';
+  activeTab = tabs.find(t => t.id === id);
+  content.appendChild(activeTab.container);
+  renderTabs();
+  if (isNew && activeTab.historyPos === -1) renderHomepage(activeTab);
+}
+
+function closeTab(id) {
+  const idx = tabs.findIndex(t => t.id === id);
+  tabs[idx].container.remove(); tabs.splice(idx, 1);
+  tabs.length ? switchTab(tabs[Math.max(0, idx - 1)].id) : document.getElementById('content').innerHTML = '';
+  renderTabs();
+}
+
+function renderTabs() {
+  const bar = document.getElementById('tabBar');
+  bar.innerHTML = '<div class="new-tab" onclick="newTab()">＋</div>';
+  tabs.forEach(tab => {
+    const el = document.createElement('div');
+    el.className = 'tab' + (tab.id === activeTab?.id ? ' active' : '');
+    el.textContent = tab.title;
+    el.onclick = () => switchTab(tab.id);
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close'; closeBtn.textContent = '×';
+    closeBtn.onclick = e => { e.stopPropagation(); closeTab(tab.id); };
+    el.appendChild(closeBtn); bar.appendChild(el);
+  });
+}
+
+function loadIntoTab(tab, url) {
+  tab.history = tab.history.slice(0, tab.historyPos + 1);
+  tab.history.push(url); tab.historyPos++;
+  tab.title = url.startsWith('tabd://') ? url.split('://')[1] : url.replace(/^https?:\/\/(www\.)?/, '').split('/')[0];
+  tab.container.innerHTML = '';
+
+  if (url.startsWith('tabd://')) {
+    tab.container.innerHTML = tabdPages[url] || '';
+  } else {
+    const iframe = document.createElement('iframe');
+    iframe.src = url; iframe.style = "width:100%;height:100%;border:none";
+    tab.container.appendChild(iframe);
+  }
+
+  switchTab(tab.id);
+}
+
+function renderHomepage(tab) {
+  tab.container.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'homepage';
+
+  homeLinks.forEach(link => {
+    const btn = document.createElement('div');
+    btn.className = 'card';
+    btn.innerHTML = `<p>${link.title}</p>`;
+    btn.onclick = () => loadIntoTab(tab, link.url);
+    grid.appendChild(btn);
+  });
+
+  const rainbow = document.createElement('div');
+  rainbow.className = 'download-button';
+  rainbow.innerHTML = `<a href="#">download tabd.</a>`;
+  tab.container.appendChild(grid);
+  tab.container.appendChild(rainbow);
+}
+
+window.onload = () => newTab();
+</script>
+
+</body>
+</html>
