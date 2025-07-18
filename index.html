@@ -2,89 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>RockySticks</title>
+  <title>RockySticks Home</title>
   <style>
-    body {
-      background: #121212;
-      color: #eee;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    header, footer {
-      text-align: center;
-      padding: 2rem;
-      background: #1e1e1e;
-      border-bottom: 1px solid #333;
-    }
-    main {
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: center;
-      max-width: 1000px;
-    }
-    .product-card {
-      background: #1c1c1c;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid #333;
-      width: 260px;
-      transition: 0.2s ease;
-    }
-    .product-card:hover {
-      border-color: #00c4ff;
-      transform: translateY(-2px);
-    }
-    h1, h2 {
-      font-size: 1.5rem;
-    }
-    p {
-      font-size: 0.95rem;
-    }
-    a {
-      color: #00c4ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    body { background: #101010; color: #eee; font-family: 'Segoe UI', sans-serif; margin: 0; }
+    header, footer { text-align: center; padding: 2rem; background: #1b1b1b; }
+    main { padding: 2rem; max-width: 800px; margin: auto; }
+    h1 { color: #00c4ff; }
+    ul { list-style-type: none; padding-left: 0; }
+    li { margin: 1rem 0; }
+    a { color: #00c4ff; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
   <header>
-    <h1>🪨 RockySticks</h1>
-    <p>A modular shell ecosystem built on RockyBrowser, RockyHome, and tabd.plugin</p>
+    <h1>🪨 Welcome to RockySticks</h1>
+    <p>Playful. Modular. Frosted for the future.</p>
   </header>
 
   <main>
-    <section class="products">
-      <div class="product-card">
-        <h2>🌐 RockyBrowser</h2>
-        <p>The core Chromium shell powering the RockySticks ecosystem. Lightweight, boot-level customizable.</p>
-        <a href="rockybrowser.html">Explore RockyBrowser →</a>
-      </div>
-
-      <div class="product-card">
-        <h2>🖼️ RockyHome</h2>
-        <p>The UI that runs inside RockyBrowser. Minimal, frosted, and powered by tabd.plugin.</p>
-        <a href="rockyhome.html">View RockyHome →</a>
-      </div>
-
-      <div class="product-card">
-        <h2>🧩 tabd.plugin</h2>
-        <p>The modular address bar used by RockyHome for navigation, overlays, and bookmark injection.</p>
-        <a href="tabd.html">View tabd.plugin →</a>
-      </div>
-    </section>
+    <ul>
+      <li><a href="RockyBrowser.html">🔹 RockyBrowser</a></li>
+      <li><a href="tabd.html">🔹 tabd.plugin</a></li>
+      <li><a href="RockyHome.html">🔹 RockyHome</a></li>
+    </ul>
   </main>
 
   <footer>
-    <p>© 2025 RockySticks. Built with help from Sneakon & ConSurf.</p>
+    <p>© 2025 RockySticks. Modular builds powered by frost.</p>
   </footer>
 </body>
 </html>
