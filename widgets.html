@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RockySticks Homescreen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --widget-size: 160px;
+      --frost: rgba(255,255,255,0.1);
+      --border: rgba(255,255,255,0.15);
+      --accent: #00c4ff;
+      --roundness: 26px;
+      --font: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      --shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(160deg, #060606, #101010);
+      font-family: var(--font);
+      overflow: hidden;
+    }
+
+    #homescreen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(var(--widget-size), 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      justify-content: center;
+    }
+
+    .widget {
+      background: var(--frost);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--roundness);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      height: var(--widget-size);
+      width: var(--widget-size);
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .widget:hover {
+      transform: scale(1.05);
+    }
+
+    .widget-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .widget-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    @media(max-width: 600px) {
+      #homescreen {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+      .widget {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="homescreen">
+    <div class="widget">
+      <div class="widget-icon">📅</div>
+      <div class="widget-label" id="dateWidget">Loading date...</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">🕰️</div>
+      <div class="widget-label" id="timeWidget">--:--</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">🌤️</div>
+      <div class="widget-label" id="weatherWidget">Checking weather...</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">🗒️</div>
+      <div class="widget-label">Notes</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">📸</div>
+      <div class="widget-label">Photos</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">✅</div>
+      <div class="widget-label">Tasks</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">📆</div>
+      <div class="widget-label">Calendar</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">🔔</div>
+      <div class="widget-label">Reminders</div>
+    </div>
+    <div class="widget">
+      <div class="widget-icon">📈</div>
+      <div class="widget-label">Usage Stats</div>
+    </div>
+  </div>
+
+  <script>
+    // Date + Time
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("dateWidget").textContent = now.toLocaleDateString(undefined, {
+        weekday: 'short', month: 'short', day: 'numeric'
+      });
+      document.getElementById("timeWidget").textContent = now.toLocaleTimeString(undefined, {
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Weather (mock)
+    document.getElementById("weatherWidget").textContent = "23°C, Clear 🌟";
+  </script>
+</body>
+</html>
